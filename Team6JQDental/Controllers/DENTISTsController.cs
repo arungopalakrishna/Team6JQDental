@@ -8,12 +8,14 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Team6JQDental;
 using Team6JQDental.Models;
 
 namespace Team6JQDental.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class DENTISTsController : ApiController
     {
         private jqdentaldbEntities db = new jqdentaldbEntities();
@@ -37,7 +39,7 @@ namespace Team6JQDental.Controllers
         }
 
         // GET: api/DENTISTs/5
-        [ResponseType(typeof(DENTIST))]
+        [ResponseType(typeof(Dentist))]
         public async Task<IHttpActionResult> GetDENTIST(int id)
         {
             DENTIST d = await db.DENTISTs.FindAsync(id);
@@ -96,7 +98,7 @@ namespace Team6JQDental.Controllers
         }
 
         // POST: api/DENTISTs
-        [ResponseType(typeof(DENTIST))]
+        [ResponseType(typeof(Dentist))]
         public async Task<IHttpActionResult> PostDENTIST(Dentist dentist)
         {
             if (!ModelState.IsValid)
