@@ -1,0 +1,20 @@
+﻿<div ng-init="populate()">
+    <p class="error">{{error}}</p>
+    <p>{{loadingMessage}}</p>
+    <h1>ABOUT US</h1>
+    <div class="panel">
+        <h2>Our Dentists</h2>
+        <table class="table table-striped">
+            <tbody>
+                <tr data-ng-repeat="item in dentistList">
+                    <td>
+                        <p>{{item.FirstName}}</p>
+                        <p>{{item.LastName}}</p>   
+                        <p>{{item.JoinDate}}</p>   
+
+                    </td>                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
