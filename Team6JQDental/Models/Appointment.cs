@@ -12,19 +12,9 @@ namespace Team6JQDental.Models
         public Nullable<int> Patient_ID { get; set; }
         public Nullable<System.DateTime> Appointment_Date { get; set; }
         public Nullable<System.DateTime> Appointment_Time { get; set; }
-        public string Scheduled_ServiceID{ get; set; }
-
-        // Assumption for the remainder of the project.
-        private int _durationInHours = 1;
-        /// <summary>
-        /// Duration Hours of an appointment is always 1 hour.
-        /// </summary>
-        public int DurationinHours
-        {
-             get
-            {
-                return _durationInHours;
-            }
-        }
+        public string Scheduled_ServiceID { get; set; }
+        public Dentist Dentist { get; set; }
+        public Patient Patient { get; set; }
+        public List<String> ScheduledServiceList { get; set; }
     }
 }

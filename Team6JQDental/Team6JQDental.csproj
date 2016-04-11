@@ -264,6 +264,7 @@
     <Compile Include="Controllers\APPOINTMENTsController.cs" />
     <Compile Include="Controllers\DENTISTsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VISITsController.cs" />
     <Compile Include="DENTIST.cs">
       <DependentUpon>JQModel.tt</DependentUpon>
     </Compile>
@@ -290,6 +291,7 @@
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Dentist.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Patient.cs" />
     <Compile Include="PATIENT.cs">
       <DependentUpon>JQModel.tt</DependentUpon>
     </Compile>

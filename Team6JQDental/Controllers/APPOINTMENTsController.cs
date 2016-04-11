@@ -8,15 +8,49 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Team6JQDental;
 using Team6JQDental.Models;
 
 namespace Team6JQDental.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class APPOINTMENTsController : ApiController
     {
         private jqdentaldbEntities db = new jqdentaldbEntities();
+
+        // GET: api/APPOINTMENTs
+        public IQueryable<Appointment> GetAPPOINTMENTsForToday()
+        {
+            List<Appointment> AppointmentList = new List<Appointment>();
+            Appointment appointment;
+            foreach (APPOINTMENT a in db.APPOINTMENTs)
+            {
+                if (a.Appointment_Date.Value.Date == DateTime.Now.Date)
+                {
+                    appointment = new Appointment();
+                    appointment.Appointment_Time = a.Appointment_Time;
+                    appointment.Dentist = new Dentist();
+                    appointment.Dentist_ID = a.Dentist_ID;
+                    appointment.Dentist.FirstName = a.DENTIST.Dentist_First_Name;
+                    appointment.Dentist.LastName = a.DENTIST.Dentist_Last_Name;
+                    appointment.Dentist.MiddleName = a.DENTIST.Dentist_Middle_Name;
+                    appointment.ScheduledServiceList = new List<string>();
+                    foreach(SCHEDULED_SERVICE ss in a.SCHEDULED_SERVICE)
+                    {
+                        appointment.ScheduledServiceList.Add(ss.SERVICE.Service_Description);
+                    }
+                    appointment.Patient = new Patient();
+                    appointment.Patient.Patient_First_Name = a.PATIENT.Patient_First_Name;
+                    appointment.Patient.Patient_Last_Name = a.PATIENT.Patient_Last_Name;
+                    AppointmentList.Add(appointment);
+                }
+            }
+
+            return AppointmentList.AsQueryable();
+        }
+
 
         // GET: api/APPOINTMENTs
         public IQueryable<Appointment> GetAPPOINTMENTs()
@@ -39,7 +73,6 @@ namespace Team6JQDental.Controllers
         }
 
         // GET: api/APPOINTMENTs/5
-        [ResponseType(typeof(APPOINTMENT))]
         public async Task<IHttpActionResult> GetAPPOINTMENT(int id)
         {
             APPOINTMENT aPPOINTMENT = await db.APPOINTMENTs.FindAsync(id);
