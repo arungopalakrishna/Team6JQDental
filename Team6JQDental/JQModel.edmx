@@ -4,13 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="jqdentaldbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="jqdentaldbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ACCOUNT">
           <Key>
             <PropertyRef Name="Account_ID" />
           </Key>
           <Property Name="Account_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Account_Balance" Type="money" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="APPOINTMENT">
           <Key>
@@ -288,8 +289,7 @@
             <End Role="VISIT" EntitySet="VISIT" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="jqdentaldbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -301,6 +301,7 @@
           <Property Name="Account_Balance" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="PATIENTs" Relationship="Self.PATIENT_ACCOUNTPATIENT" FromRole="ACCOUNT" ToRole="PATIENT" />
           <NavigationProperty Name="PAYMENTs" Relationship="Self.PAYMENT_ACCOUNTPAYMENT" FromRole="ACCOUNT" ToRole="PAYMENT" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="APPOINTMENT">
           <Key>
@@ -604,6 +605,7 @@
           <EntitySetMapping Name="ACCOUNTs">
             <EntityTypeMapping TypeName="jqdentaldbModel.ACCOUNT">
               <MappingFragment StoreEntitySet="ACCOUNT">
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Account_ID" ColumnName="Account_ID" />
                 <ScalarProperty Name="Account_Balance" ColumnName="Account_Balance" />
               </MappingFragment>

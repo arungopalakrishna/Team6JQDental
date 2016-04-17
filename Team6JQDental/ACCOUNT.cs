@@ -23,6 +23,7 @@ namespace Team6JQDental
     
         public int Account_ID { get; set; }
         public Nullable<decimal> Account_Balance { get; set; }
+        public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PATIENT> PATIENTs { get; set; }

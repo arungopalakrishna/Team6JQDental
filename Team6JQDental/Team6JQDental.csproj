@@ -261,6 +261,7 @@
       <DependentUpon>JQModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ACCOUNTsController.cs" />
     <Compile Include="Controllers\APPOINTMENTsController.cs" />
     <Compile Include="Controllers\DENTISTsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -286,6 +287,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JQModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appointment.cs" />

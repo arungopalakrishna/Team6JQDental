@@ -104,14 +104,35 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\css\queries.css" />
+    <Content Include="app\css\Site.css" />
+    <Content Include="app\css\vendors\animate.css" />
+    <Content Include="app\css\vendors\Grid.css" />
+    <Content Include="app\css\vendors\ionicons.min.css" />
+    <Content Include="app\css\vendors\normalize.css" />
+    <Content Include="app\css\fonts\ionicons.svg" />
+    <Content Include="app\images\bg-image.jpg" />
+    <Content Include="app\images\customer-1.jpg" />
+    <Content Include="app\images\customer-2.jpg" />
+    <Content Include="app\images\customer-3.jpg" />
+    <Content Include="app\images\family_smiles.jpg" />
+    <Content Include="app\images\JDLogo.png" />
+    <Content Include="app\images\Our-Team.jpg" />
+    <Content Include="app\images\shark icon1.png" />
     <Content Include="app\scripts\aboutUsCtrl.js" />
     <Content Include="app\scripts\dentistSvc.js" />
+    <Content Include="app\scripts\scripts.js" />
     <Content Include="app\views\AboutUs.html" />
+    <Content Include="app\views\AdminPage.html" />
     <Content Include="packages.config" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="app\css\fonts\ionicons.eot" />
+    <Content Include="app\css\fonts\ionicons.ttf" />
+    <Content Include="app\css\fonts\ionicons.woff" />
+    <None Include="Properties\PublishProfiles\joaquinadental - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -133,11 +154,13 @@
     <Content Include="app\views\UserData.html" />
     <Content Include="favicon.ico" />
     <Content Include="index.cshtml" />
+    <Content Include="Scripts\jquery.waypoints.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -48,7 +48,7 @@ namespace Team6JQDental.Controllers
                 }
             }
 
-            return AppointmentList.AsQueryable();
+            return AppointmentList.OrderBy(a => a.Dentist_ID).AsQueryable();
         }
 
 
