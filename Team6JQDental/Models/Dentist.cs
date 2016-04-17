@@ -34,6 +34,6 @@ namespace Team6JQDental.Models
         {
             get;
             set;
-        }
+        }        
     }
 }

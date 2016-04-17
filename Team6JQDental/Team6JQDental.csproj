@@ -289,9 +289,14 @@
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\Completed_Service.cs" />
     <Compile Include="Models\Dentist.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\Scheduled_Service.cs" />
+    <Compile Include="Models\Service.cs" />
+    <Compile Include="Models\Visit.cs" />
+    <Compile Include="Models\VisitViewModel.cs" />
     <Compile Include="PATIENT.cs">
       <DependentUpon>JQModel.tt</DependentUpon>
     </Compile>

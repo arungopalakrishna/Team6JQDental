@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Team6JQDental;
+using Team6JQDental.Models;
 
 namespace Team6JQDental.Controllers
 {
@@ -18,9 +19,27 @@ namespace Team6JQDental.Controllers
         private jqdentaldbEntities db = new jqdentaldbEntities();
 
         // GET: api/VISITs
-        public IQueryable<VISIT> GetVISITs()
+        public IQueryable<Visit> GetVISITs()
         {
-            return db.VISITs;
+            List<Visit> visitList = new List<Visit>();
+            Visit visit;
+
+            foreach (VISIT v in db.VISITs)
+            {
+                visit = new Visit();
+                visit.Visit_ID = v.Visit_ID;
+                visit.Patient_ID = v.Patient_ID;
+                visit.Dentist_ID = v.Dentist_ID;
+                visit.Visit_Date = v.Visit_Date;
+                visit.Visit_Time = v.Visit_Time;
+                //visit.Dentist    = v.DENTIST;
+                //visit.Patient    = v.PATIENT; 
+                //visit.ScheduledServiceList = v.COMPLETED_SERVICE;
+               
+                visitList.Add(visit);
+            }
+
+            return visitList.AsQueryable();
         }
 
         // GET: api/VISITs/5
