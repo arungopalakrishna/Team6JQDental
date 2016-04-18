@@ -124,6 +124,7 @@
     <Content Include="app\scripts\scripts.js" />
     <Content Include="app\views\AboutUs.html" />
     <Content Include="app\views\AdminPage.html" />
+    <Content Include="app\views\Login.html" />
     <Content Include="packages.config" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
