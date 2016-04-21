@@ -294,6 +294,7 @@
     <Compile Include="Models\Dentist.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\Service.cs" />
     <Compile Include="PATIENT.cs">
       <DependentUpon>JQModel.tt</DependentUpon>
     </Compile>

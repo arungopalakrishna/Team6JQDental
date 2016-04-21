@@ -120,10 +120,16 @@
     <Content Include="app\images\Our-Team.jpg" />
     <Content Include="app\images\shark icon1.png" />
     <Content Include="app\scripts\aboutUsCtrl.js" />
+    <Content Include="app\scripts\apptCtrl.js" />
+    <Content Include="app\scripts\apptSvc.js" />
     <Content Include="app\scripts\dentistSvc.js" />
+    <Content Include="app\scripts\loginCtrl.js" />
+    <Content Include="app\scripts\loginSvc.js" />
+    <Content Include="app\scripts\navCtrl.js" />
     <Content Include="app\scripts\scripts.js" />
     <Content Include="app\views\AboutUs.html" />
     <Content Include="app\views\AdminPage.html" />
+    <Content Include="app\views\Appointment.html" />
     <Content Include="app\views\Login.html" />
     <Content Include="packages.config" />
     <Content Include="Scripts\angular-mocks.js" />

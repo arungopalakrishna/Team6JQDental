@@ -37,7 +37,7 @@ namespace Team6JQDental.Controllers
                     appointment.Dentist.LastName = a.DENTIST.Dentist_Last_Name;
                     appointment.Dentist.MiddleName = a.DENTIST.Dentist_Middle_Name;
                     appointment.ScheduledServiceList = new List<string>();
-                    foreach(SCHEDULED_SERVICE ss in a.SCHEDULED_SERVICE)
+                    foreach (SCHEDULED_SERVICE ss in a.SCHEDULED_SERVICE)
                     {
                         appointment.ScheduledServiceList.Add(ss.SERVICE.Service_Description);
                     }
@@ -51,14 +51,50 @@ namespace Team6JQDental.Controllers
             return AppointmentList.OrderBy(a => a.Dentist_ID).AsQueryable();
         }
 
+        // Return patients for an account ID.
+        public IQueryable<Patient> GetAPPOINTMENTPatients(int accountID)
+        {
+            List<Patient> patientList = new List<Patient>();
+            Patient patient;
+            var query = from p in db.PATIENTs where p.Account_ID == accountID select p;
 
-        // GET: api/APPOINTMENTs
-        public IQueryable<Appointment> GetAPPOINTMENTs()
+            foreach (var pt in query)
+            {
+                patient = new Patient();
+                patient.Account_ID = accountID;
+                patient.Patient_ID = pt.Patient_ID;
+                patient.Patient_First_Name = pt.Patient_First_Name;
+                patient.Patient_Last_Name = pt.Patient_Last_Name;
+                patientList.Add(patient);
+            }
+            return patientList.AsQueryable();
+        }
+
+        // Return services for appointments
+        public IQueryable<Service> GetAPPOINTMENTServices()
+        {
+            List<Service> serviceList = new List<Service>();
+            Service service;
+
+            foreach (var s in db.SERVICEs)
+            {
+                service = new Service();
+                service.ServiceID = s.Service_ID;
+                service.ServiceName = s.Service_Description;
+                service.cost = s.Service_Cost.Value;
+                serviceList.Add(service);
+            }
+            return serviceList.AsQueryable();
+        }
+
+
+        // GET: api/APPOINTMENTsByUser
+        public IQueryable<Appointment> GetAPPOINTMENTsByPatient(int patientID)
         {
             List<Appointment> appointmentList = new List<Appointment>();
             Appointment appointment;
-            
-            foreach(APPOINTMENT a in db.APPOINTMENTs)
+
+            foreach (APPOINTMENT a in db.APPOINTMENTs)
             {
                 appointment = new Appointment();
                 appointment.Appointment_Date = a.Appointment_Date;
@@ -121,12 +157,18 @@ namespace Team6JQDental.Controllers
 
         // POST: api/APPOINTMENTs
         [ResponseType(typeof(APPOINTMENT))]
-        public async Task<IHttpActionResult> PostAPPOINTMENT(APPOINTMENT aPPOINTMENT)
+        public async Task<IHttpActionResult> PostAPPOINTMENT(Appointment appointment)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            APPOINTMENT aPPOINTMENT = new APPOINTMENT();
+            aPPOINTMENT.Appointment_Date = appointment.Appointment_Date;
+            aPPOINTMENT.Appointment_Time = appointment.Appointment_Time;
+            aPPOINTMENT.Dentist_ID = appointment.Dentist_ID;
+            aPPOINTMENT.Patient_ID = appointment.Patient_ID;
 
             db.APPOINTMENTs.Add(aPPOINTMENT);
             await db.SaveChangesAsync();

@@ -3,10 +3,27 @@
 //
 'use strict';
 angular.module('todoApp')
-.controller('homeCtrl', ['$scope','$location', function ($scope, $location) {
+.controller('homeCtrl', ['$rootScope','$scope','$location', function ($rootScope, $scope, $location) {
     $scope.isActive = function (viewLocation) {        
         return viewLocation === $location.path();
     };
+
+
+
+    if ($rootScope.authenticated != true) {
+        $rootScope.authenticated = false;
+        $rootScope.username = "";
+        $rootScope.accountID = "";
+    } else {
+
+    }
+
+    $scope.logout = function(){
+        $rootScope.authenticated = false;
+        $rootScope.username = "";
+        $rootScope.accountID = "";
+    }
+
 }]);
 
 

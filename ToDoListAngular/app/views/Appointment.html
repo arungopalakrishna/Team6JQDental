@@ -1,0 +1,54 @@
+﻿
+<div ng-init="populate()"  ng-controller='apptCtrl'>
+    <section class="section-form">
+        <div class="row">
+            <h2>Schedule an appointment with us</h2>
+        </div>
+        <div class="row">
+            <form method="post" action="#/Appointment" class="contact-form">
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label for="patientName">Patient Name</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <select name="patientName" id="accountNameList" data-ng-model="patient" data-ng-options="p.Patient_ID as p.Patient_First_Name for p in patientList">
+                            <option value="" disabled selected>Who are you scheduling for?</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label for="services">Services</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <select class="wrapper" name="servicesDropDown" data-ng-model="service" data-ng-options="s.ServiceID as s.ServiceName for s in serviceList" id="serviceList" multiple></select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label>When would you like to visit?</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <input type="datetime-local" name="appointmentDateTimePicker" id="appointmentDateTime">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label>Notes for the doctor</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <textarea name="message" placeholder="Your message"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label>&nbsp;</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <input class="btn btn-full" type="submit" value="Schedule" ng-click="schedule()">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>

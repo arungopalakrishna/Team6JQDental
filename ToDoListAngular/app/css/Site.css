@@ -344,13 +344,25 @@ cite img{
 
 input[type=text],
 input[type=email],
-select,
+input[type=password],
 textarea {
-    width: 100%;
-    padding: 7px;
+    width: 89%;
+    padding: 12px;
     border-radius: 3px;
     border: 1px solid #ccc;
 }
+
+  .wrapper{
+    min-height: 180px;
+     max-height: 200px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 400px;
+ }
+ .wrapper .selection{
+   width:150px;
+     border: 1px solid #ccc;
+ }
 
 textarea {
     height: 100px;

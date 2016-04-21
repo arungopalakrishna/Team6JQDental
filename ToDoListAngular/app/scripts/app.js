@@ -13,11 +13,14 @@ angular.module('todoApp', ['ngRoute'])
     }).when("/UserData", {
         controller: "userDataCtrl",
         templateUrl: "/App/Views/UserData.html",
-    }).when("/AboutUs", {
-        controller: "aboutUsCtrl",
-        templateUrl: "/App/Views/AboutUs.html",
-    }). otherwise({ redirectTo: "/Home" });
-}]);
+    }).when("/Login", {
+        controller: "loginCtrl",
+        templateUrl: "/App/Views/Login.html",
+    }).when("/Appointment", {
+        controller: "apptCtrl",
+        templateUrl: "/App/Views/Appointment.html",
+    }).otherwise({ redirectTo: "/Home" });
+}])
 
 
 //

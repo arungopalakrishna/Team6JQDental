@@ -21,9 +21,10 @@
                 <ul class="main-nav js--main-nav">
                     <li ng-class="{ active: isActive('/Home') }"><a href="#/Home/#top">Home</a></li>
                     <li><a href="#features" target="_self">Our Practice</a></li>
-                    <li><a href="#testimonials" target="_self">Testimonials</a></li>
+                    <li ng-class="{ active: isActive('/MyAccount') }"><a href="#/MyAccount">My Account</a></li>
                     <li ng-class="{ active: isActive('/Appointment') }"><a href="#/Appointment">Appointment</a></li>
-                    <li ng-class="{ active: isActive('/Login') }"><a href="#/Login">Login</a></li>
+                    <li ng-show="!authenticated" ng-class="{ active: isActive('/Login') }"><a href="#/Login">Login</a></li>
+                    <li ng-show="authenticated"><a href="" ng-click="logout()">logout</a></li>
                     <li> <p>| <i class="ion-ios-telephone-outline"></i>  1800-JOAQ-INA</p></li>
                 </ul>
                 <a class="mobile-nav-icon js--nav-icon"><i class="ion-navicon-round"></i></a>
@@ -42,13 +43,17 @@
     <script src="app/scripts/adal-angular.js"></script>
     <script src="app/scripts/app.js"></script>
     <script src="app/scripts/homeCtrl.js"></script>
+    <script src="app/scripts/loginCtrl.js"></script>
     <script src="app/scripts/userDataCtrl.js"></script>
     <script src="app/scripts/todoListCtrl.js"></script>
     <script src="app/scripts/aboutUsCtrl.js"></script>
+    <script src="app/scripts/apptCtrl.js"></script>
     <script type="text/javascript">
         var apiEndpoint = "@System.Configuration.ConfigurationManager.AppSettings["toDoListAPIURL"]";
     </script>
     <script src="app/scripts/todoListSvc.js"></script>
+    <script src="app/scripts/loginSvc.js"></script>
+    <script src="app/scripts/apptSvc.js"></script>
 
 </body>
 
