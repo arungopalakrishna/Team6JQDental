@@ -3,25 +3,28 @@
 //
 'use strict';
 angular.module('todoApp')
-.controller('homeCtrl', ['$rootScope','$scope','$location', function ($rootScope, $scope, $location) {
+.controller('homeCtrl', ['$rootScope','$scope',  '$location', function ($rootScope, $scope,  $location) {
     $scope.isActive = function (viewLocation) {        
         return viewLocation === $location.path();
     };
 
 
-
-    if ($rootScope.authenticated != true) {
+    if (sessionStorage.getItem('authenticated') == 'true') {
+        $rootScope.authenticated = true;
+       
+    } else {
         $rootScope.authenticated = false;
         $rootScope.username = "";
         $rootScope.accountID = "";
-    } else {
-
     }
 
-    $scope.logout = function(){
+    $scope.logout = function () {
+        alert("logged out")
         $rootScope.authenticated = false;
         $rootScope.username = "";
         $rootScope.accountID = "";
+        sessionStorage.removeItem('authenticated');
+        sessionStorage.removeItem('accountID');
     }
 
 }]);

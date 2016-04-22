@@ -11,8 +11,18 @@
                         <label for="patientName">Patient Name</label>
                     </div>
                     <div class="col span-2-of-3">
-                        <select name="patientName" id="accountNameList" data-ng-model="patient" data-ng-options="p.Patient_ID as p.Patient_First_Name for p in patientList">
+                        <select name="patientName" id="accountNameList" data-ng-model="patient" data-ng-options="p.Patient_ID as p.Patient_First_Name for p in patientList" data-ng-change="changedPatient(patient)" >
                             <option value="" disabled selected>Who are you scheduling for?</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label for="doctorName">Dentist Name</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <select name="dentist" id="dentistNameList" data-ng-model="dentist" data-ng-options="d.DentistID as 'Dr.' +  d.FirstName + ' ' + d.LastName for d in dentistList" data-ng-change="changedDentist(dentist)">
+                            <option value="" disabled selected>Who is your dentist?</option>
                         </select>
                     </div>
                 </div>
@@ -21,7 +31,7 @@
                         <label for="services">Services</label>
                     </div>
                     <div class="col span-2-of-3">
-                        <select class="wrapper" name="servicesDropDown" data-ng-model="service" data-ng-options="s.ServiceID as s.ServiceName for s in serviceList" id="serviceList" multiple></select>
+                        <select class="wrapper" name="servicesDropDown" data-ng-model="service" data-ng-options="s.ServiceID as s.ServiceName for s in serviceList" data-ng-change="changedService(service)" id="serviceList" multiple></select>
                     </div>
                 </div>
                 <div class="row">

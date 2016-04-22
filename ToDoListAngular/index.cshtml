@@ -38,6 +38,7 @@
     <script src="http://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.2.25/angular-route.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
     <script src="~/Scripts/jquery.waypoints.min.js"></script>
     <script src="app/scripts/scripts.js"></script>
     <script src="app/scripts/adal-angular.js"></script>
@@ -51,6 +52,9 @@
     <script type="text/javascript">
         var apiEndpoint = "@System.Configuration.ConfigurationManager.AppSettings["toDoListAPIURL"]";
     </script>
+    <!--script type="text/javascript">
+        var apiEndpoint = "@System.Configuration.ConfigurationManager.AppSettings["productionAPIURL"]";
+    </script-->
     <script src="app/scripts/todoListSvc.js"></script>
     <script src="app/scripts/loginSvc.js"></script>
     <script src="app/scripts/apptSvc.js"></script>

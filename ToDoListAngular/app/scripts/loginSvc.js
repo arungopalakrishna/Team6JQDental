@@ -6,8 +6,8 @@ angular.module('todoApp')
     delete $http.defaults.headers.common['X-Requested-With'];
 
     return {
-        getItems: function () {
-            return $http.get(apiEndpoint + '/api/DENTISTs/GetDENTISTs');
+        getAuth: function (credentials) {
+            return $http.get(apiEndpoint + '/api/ACCOUNTs/GetACCOUNTAuthentication?accountID=' + credentials.accountID + "&password=" + credentials.password);
         },
         getItem: function (id) {
             return $http.get(apiEndpoint + '/api/DENTISTs/GetDENTIST' + id);

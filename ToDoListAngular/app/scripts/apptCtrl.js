@@ -12,19 +12,39 @@ angular.module('todoApp')
     $scope.populate = function (){
         apptSvc.getServices().success(function (results) {
             $scope.serviceList = results;
-            // alert($scope.serviceList[0].ServiceName);
         });
 
         apptSvc.getPatients($scope.accountID).success(function (results) {
             $scope.patientList = results;
-           // alert($scope.patientList[0].Patient_First_Name);
-        })
+        });
+
+        apptSvc.getDentists().success(function (results) {
+            $scope.dentistList = results;
+        });
+
+       
+
+
+       // $scope.serviceList = [{ "ServiceID": 1, "ServiceName": "Regular check up" }, { "ServiceID": 2, "ServiceName": "Root Canal" }, { "ServiceID": 3, "ServiceName": "Clean Up" }]
+       // $scope.patientList = [{ "Patient_First_Name": "Mark", "Patient_ID": 12 }, { "Patient_First_Name": "Steve", "Patient_ID": 13 }];
+       // $scope.dentistList = [{ "DentistID": 1, "FirstName": "Dr. Dan" }, { "DentistID": 2, "FirstName": "Dr. Whelan" }];
     };
 
     $scope.schedule = function () {
-        alert($scope.patient.Patient_First_Name);
-        event.preventDefault();
+        
     };
+
+    $scope.changedPatient = function (patient) {
+        $scope.selectedPatientID = patient;
+    }
+
+    $scope.changedDentist = function (dentist) {
+        $scope.selectedDentistID = dentist;
+    }
+
+    $scope.changedService = function (services) {
+        $scope.selectedServiceList = services;
+    }
 
 
 

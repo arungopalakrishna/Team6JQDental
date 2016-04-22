@@ -38,6 +38,19 @@ namespace Team6JQDental.Controllers
             return Ok(regStatus);
         }
 
+        // GET: api/ACCOUNTs
+        [ResponseType(typeof(String))]
+        public async Task<IHttpActionResult> GetACCOUNTAuthentication(int accountID, string password)
+        {
+            String status = "bad";
+            ACCOUNT aCCOUNT = await db.ACCOUNTs.FindAsync(accountID);
+            if(aCCOUNT.Password == password)
+            {
+                status = "good";
+            }
+            return Ok(status);
+        }
+
 
         // GET: api/ACCOUNTs
         [ResponseType(typeof(String))]
