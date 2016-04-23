@@ -20,6 +20,12 @@ angular.module('todoApp', ['ngRoute'])
     }).when("/Appointment", {
         controller: "apptCtrl",
         templateUrl: "/App/Views/Appointment.html",
+    }).when("/Admin", {
+        controller: "adminCtrl",
+        templateUrl: "/App/Views/Admin.html"
+    }).when("/SignUp", {
+        controller: "signUpCtrl",
+        templateUrl: "/App/Views/SignUp.html"
     }).otherwise({ redirectTo: "/Home" });
 }])
 

@@ -1,0 +1,41 @@
+﻿<div id="singUpContent">
+    <section class="section-form">
+        <div class="row">
+            <h2>Create a New Account</h2>
+        </div>
+        <div class="row">
+            <form class="contact-form" role="form" ng-submit="submit()">
+                <div class="form-group">
+                    <input type="checkbox" ng-model="disablelist">Do you already have an account with us?<br><br>
+                    <div class="form-group">
+                        <label for="username">Account ID:</label>
+                        <input type="text" ng-disabled="!disablelist" ng-checked="disablelist && 0" class="form-control" id="username" name="accountID" ng-model="credentials.accountID" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-2">
+                        <label for="firstname">Password:</label>
+                        <input type="password" class="form-control" id="firstname" name="firstname" ng-model="credentials.password" />
+                    </div>
+                    <div class="col span-2-of-4">
+                        <label for="firstname">Retype Password:</label>
+                        <input type="password" class="form-control" id="lastname" name="lastname" ng-model="credentials.password" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-2">
+                        <label for="firstname">FirstName:</label>
+                        <input type="password" class="form-control" id="firstname" name="firstname" ng-model="credentials.firstName" />
+                    </div>
+                    <div class="col span-2-of-4">
+                        <label for="firstname">LastName:</label>
+                        <input type="password" class="form-control" id="lastname" name="lastname" ng-model="credentials.lastName" />
+                    </div>
+                </div>
+                <div class="col span-2-of-3">
+                    <input class="btn btn-full" type="submit" value="Sign Up">
+                </div>
+            </form>
+        </div>
+    </section>
+</div>

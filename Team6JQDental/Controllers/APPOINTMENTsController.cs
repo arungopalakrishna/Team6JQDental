@@ -37,6 +37,8 @@ namespace Team6JQDental.Controllers
                     appointment.Dentist.LastName = a.DENTIST.Dentist_Last_Name;
                     appointment.Dentist.MiddleName = a.DENTIST.Dentist_Middle_Name;
                     appointment.ScheduledServiceList = new List<string>();
+                    appointment.Appointment_Date = a.Appointment_Date;
+                    appointment.Appointment_Time = a.Appointment_Time;
                     foreach (SCHEDULED_SERVICE ss in a.SCHEDULED_SERVICE)
                     {
                         appointment.ScheduledServiceList.Add(ss.SERVICE.Service_Description);

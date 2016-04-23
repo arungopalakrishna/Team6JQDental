@@ -7,7 +7,7 @@ angular.module('todoApp')
 
     $scope.serviceList = null;
     $scope.patientList = null;
-    $scope.accountID = $rootScope.accountID;
+    $scope.accountID = sessionStorage.getItem('accountID');
 
     $scope.populate = function (){
         apptSvc.getServices().success(function (results) {
@@ -21,13 +21,6 @@ angular.module('todoApp')
         apptSvc.getDentists().success(function (results) {
             $scope.dentistList = results;
         });
-
-       
-
-
-       // $scope.serviceList = [{ "ServiceID": 1, "ServiceName": "Regular check up" }, { "ServiceID": 2, "ServiceName": "Root Canal" }, { "ServiceID": 3, "ServiceName": "Clean Up" }]
-       // $scope.patientList = [{ "Patient_First_Name": "Mark", "Patient_ID": 12 }, { "Patient_First_Name": "Steve", "Patient_ID": 13 }];
-       // $scope.dentistList = [{ "DentistID": 1, "FirstName": "Dr. Dan" }, { "DentistID": 2, "FirstName": "Dr. Whelan" }];
     };
 
     $scope.schedule = function () {
@@ -45,7 +38,4 @@ angular.module('todoApp')
     $scope.changedService = function (services) {
         $scope.selectedServiceList = services;
     }
-
-
-
 }]);

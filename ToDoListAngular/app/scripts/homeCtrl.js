@@ -11,7 +11,7 @@ angular.module('todoApp')
 
     if (sessionStorage.getItem('authenticated') == 'true') {
         $rootScope.authenticated = true;
-       
+        $rootScope.accountID = sessionStorage.getItem('accountID');
     } else {
         $rootScope.authenticated = false;
         $rootScope.username = "";
@@ -21,7 +21,6 @@ angular.module('todoApp')
     $scope.logout = function () {
         alert("logged out")
         $rootScope.authenticated = false;
-        $rootScope.username = "";
         $rootScope.accountID = "";
         sessionStorage.removeItem('authenticated');
         sessionStorage.removeItem('accountID');

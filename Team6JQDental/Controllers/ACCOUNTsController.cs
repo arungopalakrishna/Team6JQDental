@@ -81,6 +81,31 @@ namespace Team6JQDental.Controllers
             return Ok(aCCOUNT);
         }
 
+        //PUT api/ACCOUNT/Payment
+        [ResponseType(typeof(String))]
+        public async Task<IHttpActionResult> PutACCOUNTPayment(Payment payment)
+        {
+            String paymentStatus = "fail";
+
+            if (!ModelState.IsValid)
+            {
+                paymentStatus = "fail";
+                return Ok(paymentStatus);
+            }
+
+            PAYMENT paymentObj = new PAYMENT();
+            paymentObj.Account_ID = payment.Account_ID;
+            paymentObj.Payment_Amount = payment.Payment_Amount;
+            paymentObj.Payment_Date = payment.Payment_Date;
+
+            db.PAYMENTs.Add(paymentObj);
+
+            await db.SaveChangesAsync();
+
+            paymentStatus = "good";
+            return Ok(paymentStatus);
+        }
+
         // PUT: api/ACCOUNTs/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutACCOUNT(int id, ACCOUNT aCCOUNT, string password)
