@@ -474,3 +474,52 @@ footer p{
 .js--wp-3.animated {
     opacity: 1;
 }
+
+/*Sushanth Appointment table*/
+.table-striped{
+    border-collapse: collapse;  
+    position:relative;     
+    width: 97%;
+    padding:25px;    
+}
+.table-header{
+    background-color:#004E63;
+    border-bottom:1pt solid black;
+    border-top:1pt solid black;
+    border-right:1pt solid black;
+    border-left:1pt solid black;
+}
+.table-header td{
+    color:white;
+    padding-left:2px;
+}
+.table-rows{
+    border-bottom:1pt solid black;
+    border-right:1pt solid black;
+    border-left:1pt solid black;
+}
+.table-rows td{
+    padding-left:2px;
+}
+.edit-buttons button{
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    display: inline-block;
+    color: #fff;
+    padding: 6px 12px;
+}
+.btn-save{
+    background-color: #286090;
+    border: 1px solid #286090;  
+    margin: 2px 2px 2px 2px;     
+    border-radius: 4px; 
+}
+.btn-delete{
+    background-color: #f44336;
+    border: 1px solid #f44336;   
+    margin: 2px 2px 2px 2px;     
+    border-radius: 4px; 
+}

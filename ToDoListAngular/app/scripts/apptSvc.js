@@ -15,8 +15,8 @@ angular.module('todoApp')
         getDentists: function () {
             return $http.get(apiEndpoint + '/api/DENTISTs/GetDentists');
         },
-        postItem: function (item) {
-            return $http.post(apiEndpoint + '/api/APPOINTMENTs/PostAPPONTMENT', item);
+        postItem: function (appointment) {
+            return $http.post(apiEndpoint + '/api/APPOINTMENTs/PostAPPOINTMENT', appointment);
         },
         putItem: function (item) {
             return $http.put(apiEndpoint + '/api/APPOINTMENTs/PutDENTIST', item);
@@ -24,8 +24,11 @@ angular.module('todoApp')
         deleteItem: function (id) {
             return $http({
                 method: 'DELETE',
-                url: apiEndpoint + '/api/APPOINTMENTs/DeleteDENTIST' + id
+                url: apiEndpoint + '/api/APPOINTMENTs/DeleteAPPOINTMENT?id=' + id
             });
+        },
+        getAppointments: function (accountID) {
+            return $http.get(apiEndpoint + '/api/APPOINTMENTs/GetAPPOINTMENTsByPatient?accountID=' + accountID);
         }
-    };
+        };
 }]);

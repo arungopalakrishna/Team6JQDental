@@ -61,4 +61,32 @@
             </form>
         </div>
     </section>
+    <section class="section-grid">
+        <div class="row">
+            <h2>Your Schedule</h2>
+        </div>
+        <div class="col span-8-of-8">
+            <table class="table-striped">
+                <tr class="table-header">
+                    <td>Patient First Name</td>
+                    <td>Patient Last Name</td>
+                    <td>Dentist</td>
+                    <td>Appointment</td>
+                    <td>Edit</td>
+                </tr>
+                <tr class="table-rows" ng-repeat="appointment in appointmentList ">
+                    <td><span ng-model="appointment.Patient.Patient_First_Name">{{appointment.Patient.Patient_First_Name}}</span> </td>
+                    <td><span ng-model="appointment.Patient.Patient_Last_Name"> {{appointment.Patient.Patient_Last_Name}} </span></td>
+                    <td><span ng-model="appointment.Dentist.LastName">Dr.{{appointment.Dentist.LastName}}</span></td>                    
+                    <td><input type="datetime-local" name="appointmentDateTimePicker" id="appointmentDateTime" ng-model="appointment.Appointment_Date"/></td>
+                    <td>                        
+                        <div class="edit-buttons">                            
+                            <button class="btn btn-save" ng-click="saveAppointment(appointment)">Save</button>
+                            <button class="btn btn-delete" ng-click="removeAppointment(appointment.Appointment_ID)">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+</section>
 </div>

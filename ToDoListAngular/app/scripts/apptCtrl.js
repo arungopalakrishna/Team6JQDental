@@ -7,7 +7,9 @@ angular.module('todoApp')
 
     $scope.serviceList = null;
     $scope.patientList = null;
-    $scope.accountID = $rootScope.accountID;
+    $scope.accountID = sessionStorage.getItem('accountID');
+    $scope.appointmentList;
+    $scope.appointment;
 
     $scope.populate = function (){
         apptSvc.getServices().success(function (results) {
@@ -21,6 +23,10 @@ angular.module('todoApp')
         apptSvc.getDentists().success(function (results) {
             $scope.dentistList = results;
         });
+
+        apptSvc.getAppointments($scope.accountID).success(function (results) {
+            $scope.appointmentList = results;
+        })
 
        
 
@@ -47,5 +53,23 @@ angular.module('todoApp')
     }
 
 
+    
+    $scope.changedAppointment = function (appointment) {
+        $scope.appointment = appointment;
+    }
+    $scope.saveAppointment = function (appointment) {        
+        apptSvc.postItem(appointment).success(function () {           
+            apptSvc.getAppointments($scope.accountID).success(function (results) {
+                $scope.appointmentList = results;
+            })
+        });
+    };    
+    $scope.removeAppointment = function (id) {
+        apptSvc.deleteItem(id).success(function () {            
+            apptSvc.getAppointments($scope.accountID).success(function (results) {
+                $scope.appointmentList = results;
+            })
+        });
+    };
 
 }]);
