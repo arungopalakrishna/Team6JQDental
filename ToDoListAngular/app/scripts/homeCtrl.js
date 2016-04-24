@@ -19,7 +19,6 @@ angular.module('todoApp')
     }
 
     $scope.logout = function () {
-        alert("logged out")
         $rootScope.authenticated = false;
         $rootScope.accountID = "";
         sessionStorage.removeItem('authenticated');

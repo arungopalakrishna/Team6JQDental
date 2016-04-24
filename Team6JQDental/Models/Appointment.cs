@@ -12,9 +12,9 @@ namespace Team6JQDental.Models
         public Nullable<int> Patient_ID { get; set; }
         public Nullable<System.DateTime> Appointment_Date { get; set; }
         public Nullable<System.DateTime> Appointment_Time { get; set; }
-        public string Scheduled_ServiceID { get; set; }
         public Dentist Dentist { get; set; }
         public Patient Patient { get; set; }
         public List<String> ScheduledServiceList { get; set; }
+        public List<int> ScheduledServiceIDs { get; set; }
     }
 }

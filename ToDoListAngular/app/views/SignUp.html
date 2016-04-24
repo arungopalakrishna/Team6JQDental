@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col span-1-of-2">
                         <label for="firstname">Password:</label>
-                        <input type="password" class="form-control" id="firstname" name="firstname" ng-model="account.Password" />
+                        <input type="password" class="form-control" id="password" name="passwordField" ng-model="account.Password" />
                     </div>
                     <div class="col span-2-of-4">
                         <label for="firstname">Retype Password:</label>
@@ -25,17 +25,17 @@
                 <div class="row">
                     <div class="col span-1-of-2">
                         <label for="firstname">FirstName:</label>
-                        <input type="password" class="form-control" id="firstname" name="firstname" ng-model="account.patient.Patient_First_Name" />
+                        <input type="text" class="form-control" id="firstname" name="firstname" ng-model="account.patient.Patient_First_Name" />
                     </div>
                     <div class="col span-2-of-4">
                         <label for="firstname">LastName:</label>
-                        <input type="password" class="form-control" id="lastname" name="lastname" ng-model="account.patient.Patient_Last_Name"  />
+                        <input type="text" class="form-control" id="lastname" name="lastname" ng-model="account.patient.Patient_Last_Name"  />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col span-1-of-2">
                         <label for="firstname">Date of Birth</label>
-                        <input type="datetime-local" name="appointmentDateTimePicker" id="appointmentDateTime" ng-model="account.patient.Patient_DOB" >
+                        <input type="date" name="appointmentDateTimePicker" id="appointmentDateTime" ng-model="account.patient.Patient_DOB" >
                     </div>
                     <div class="col span-2-of-4">
                         <label for="ssn">Social Security Number</label>

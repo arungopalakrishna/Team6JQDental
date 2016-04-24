@@ -9,8 +9,8 @@ angular.module('todoApp')
         getAuth: function (credentials) {
             return $http.get(apiEndpoint + '/api/ACCOUNTs/GetACCOUNTAuthentication?accountID=' + credentials.accountID + "&password=" + credentials.password);
         },
-        getItem: function (id) {
-            return $http.get(apiEndpoint + '/api/DENTISTs/GetDENTIST' + id);
+        getPayment: function (id) {
+            return $http.get(apiEndpoint + '/api/ACCOUNTs/GetACCOUNTInfoDetails?id=' + id);
         },
         postAccount: function (account) {
             return $http.post(apiEndpoint + '/api/ACCOUNTs/PostACCOUNT', account);
@@ -22,6 +22,18 @@ angular.module('todoApp')
             return $http({
                 method: 'DELETE',
                 url: apiEndpoint + '/api/DENTISTs/DeleteDENTIST' + id
+            });
+        },
+        getAccountPatients: function (accountID) {
+            return $http.get(apiEndpoint + '/api/ACCOUNTs/GetPATIENTs?accountID=' + accountID);
+        },
+        postPatient: function (patient) {
+            return $http.post(apiEndpoint + '/api/ACCOUNTs/PostPATIENT', patient);
+        },
+        deletePatient: function (id) {
+            return $http({
+                method: 'DELETE',
+                url: apiEndpoint + '/api/ACCOUNTs/DeletePATIENT?id=' + id
             });
         }
     };

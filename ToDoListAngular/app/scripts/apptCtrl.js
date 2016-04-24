@@ -5,11 +5,13 @@ angular.module('todoApp')
         return viewLocation === $location.path();
     };
 
+    $scope.appointment = {};
+
     $scope.serviceList = null;
     $scope.patientList = null;
     $scope.accountID = sessionStorage.getItem('accountID');
 
-    $scope.populate = function (){
+    $scope.populate = function () {
         apptSvc.getServices().success(function (results) {
             $scope.serviceList = results;
         });
@@ -27,20 +29,30 @@ angular.module('todoApp')
         });
     };
 
+    $scope.update = function (appointment) {
+        $scope.appointment.Appointment_Date = appointment.Appointment_Date;
+        $scope.appointment.Appointment_Time = appointment.Appointment_Date;
+    };
+
     $scope.schedule = function () {
-        
+        $scope.appointment.Appointment_Time = $scope.appointment.Appointment_Date;
+        apptSvc.putAppointment($scope.appointment).success(function (results) {
+            apptSvc.getAppointments($scope.accountID).success(function (results) {
+                $scope.appointmentList = results;
+            })
+        })
     };
 
     $scope.changedPatient = function (patient) {
-        $scope.selectedPatientID = patient;
+        $scope.appointment.Patient_ID = patient;
     }
 
     $scope.changedDentist = function (dentist) {
-        $scope.selectedDentistID = dentist;
+        $scope.appointment.Dentist_ID = dentist;
     }
 
     $scope.changedService = function (services) {
-        $scope.selectedServiceList = services;
+        $scope.appointment.ScheduledServiceIDs = services;
     }
 
     $scope.removeAppointment = function (id) {

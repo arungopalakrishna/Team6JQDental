@@ -1,43 +1,74 @@
 ﻿<link href='https://fonts.googleapis.com/css?family=Lato:400,300,400italic,100,300italic' rel='stylesheet' type='text/css'>
-<section class="section-form">
-    <div class="row">
-        <h2>My Account Info</h2>
-    </div>
-    <br />
-    <br />
-    <div class="row">
-        <div class="col span-1-of-3">
-            <p>Dear</p>
+<div ng-init="populate()" ng-controller="myAcctCtrl">
+    <section class="section-form">
+        <div class="row">
+            <h2>My Account Info</h2>
         </div>
-    </div>
-    <div class="row">
-        <p>
-            This is your oustanding balance for leveraging our services at Joaquina Dental. Thank you for letting us be your friendly neighbourhood dentist team! For any concerns, please
-            email us at care@joauinadental.com!
-        </p>
         <br />
-        <p>With Regards,</p>
-        <p>The Joaquina Team</p>
-    </div>
-    <br />
-    <br />
+        <br />
+        <div class="row">
+            <div class="col span-1-of-3">
+                <p>Dear{{' '}}{{accountInfo.FirstName}}{{','}} </p>
+            </div>
+        </div>
+        <div class="row">
+            <p>
+                This is your oustanding balance for leveraging our services at Joaquina Dental. Thank you for letting us be your friendly neighbourhood dentist team! For any concerns, please
+                email us at care@joauinadental.com!
+            </p>
+            <br />
+            <p>With Regards,</p>
+            <p>The Joaquina Team</p>
+        </div>
+        <br />
+        <br />
+        <table class="table-striped">
+            <tr class="table-header">
+                <td colspan="2"><b>Your Balance Breakdown</b></td>
+            </tr>
+            <tr class="table-rows">
+                <td>Balance</td>
+                <td>{{accountInfo.Account_Balance}}{{'$'}}</td>
+            </tr>
+            <tr class="table-rows">
+                <td>Last Recorded Payment</td>
+                <td>{{accountInfo.Last_Payment}}{{'$'}}</td>
+            </tr>
 
-    <table class="table-striped">
-        <tr class="table-header">
-            <td colspan="2"><b>Your Balance Breakdown</b></td>
-        </tr>
-        <tr class="table-rows">
-            <td>Balance</td>
-            <td>$120</td>
-        </tr>
-        <tr class="table-rows">
-            <td>Last Recorded Payment</td>
-            <td>$80</td>
-        </tr>
-
-        <tr class="table-rows">
-            <td><b>Outstanding Balance</b></td>
-            <td><b>$40</b></td>
-        </tr>
-    </table>
-</section>
+            <tr class="table-rows">
+                <td><b>Outstanding Balance</b></td>
+                <td><b>{{accountInfo.Remaining_Balance}}{{'$'}}</b></td>
+            </tr>
+        </table>
+        <div class="col span-8-of-8">
+            <div class="row">
+                <h2>Account Members</h2>
+            </div>
+            <table class="table-striped">
+                <tr class="table-header">
+                    <td>Patient First Name</td>
+                    <td>Patient Middle Name</td>
+                    <td>Patient Last Name</td>
+                    <td>SSN</td>
+                    <td>DOB</td>
+                    <td>Allergies</td>
+                    <td>Edit</td>
+                </tr>
+                <tr class="table-rows" ng-repeat="patient in patientsList ">
+                    <td><input type="text" ng-model="patient.Patient_First_Name"></td>
+                    <td><input type="text" ng-model="patient.Patient_Middle_Name"></td>
+                    <td><input type="text" ng-model="patient.Patient_Last_Name"></td>
+                    <td><input type="text" ng-model="patient.Patient_SSN"></td>
+                    <td><input type="datetime-local" name="appointmentDateTimePicker" id="appointmentDateTime" ng-model="patient.Patient_DOB" /></td>
+                    <td><input type="text" ng-model="patient.Patient_Allergies"></td>
+                    <td>
+                        <div class="edit-buttons">
+                            <button class="btn btn-save" ng-click="savePatient(patient)">Save</button>
+                            <button class="btn btn-delete" ng-click="removePatient(patient.Patient_ID)">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+</div>

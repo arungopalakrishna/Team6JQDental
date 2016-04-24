@@ -114,10 +114,6 @@ namespace Team6JQDental.Controllers
                     appointment.Dentist.LastName = a.DENTIST.Dentist_Last_Name;
                     appointment.Dentist.MiddleName = a.DENTIST.Dentist_Middle_Name;
                     appointment.ScheduledServiceList = new List<string>();
-                    foreach (SCHEDULED_SERVICE ss in a.SCHEDULED_SERVICE)
-                    {
-                        appointment.ScheduledServiceList.Add(ss.SERVICE.Service_Description);
-                    }
                     appointment.Patient = new Patient();
                     appointment.Patient.Patient_First_Name = a.PATIENT.Patient_First_Name;
                     appointment.Patient.Patient_Last_Name = a.PATIENT.Patient_Last_Name;
@@ -145,19 +141,26 @@ namespace Team6JQDental.Controllers
 
         // PUT: api/APPOINTMENTs/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutAPPOINTMENT(int id, APPOINTMENT aPPOINTMENT)
+        public async Task<IHttpActionResult> PutAPPOINTMENT(Appointment appointment)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            APPOINTMENT aPPOINTMENT = new APPOINTMENT();
 
-            if (id != aPPOINTMENT.Appointment_ID)
-            {
-                return BadRequest();
-            }
+            aPPOINTMENT.Appointment_Date = appointment.Appointment_Date;
+            aPPOINTMENT.Appointment_Time = appointment.Appointment_Time;
+            aPPOINTMENT.Dentist_ID = appointment.Dentist_ID;
+            aPPOINTMENT.Patient_ID = appointment.Patient_ID;
+            db.APPOINTMENTs.Add(aPPOINTMENT);
 
-            db.Entry(aPPOINTMENT).State = EntityState.Modified;
+            db.SaveChanges();
+
+            foreach (var scheduledService in appointment.ScheduledServiceIDs)
+            {
+
+                SCHEDULED_SERVICE sCHEDSERVICE = new SCHEDULED_SERVICE();
+                sCHEDSERVICE.Appointment_ID = aPPOINTMENT.Appointment_ID;
+                sCHEDSERVICE.Scheduled_Service_ID = scheduledService;
+                db.SCHEDULED_SERVICE.Add(sCHEDSERVICE);
+            }
 
             try
             {
@@ -165,14 +168,7 @@ namespace Team6JQDental.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!APPOINTMENTExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+               
             }
 
             return StatusCode(HttpStatusCode.NoContent);

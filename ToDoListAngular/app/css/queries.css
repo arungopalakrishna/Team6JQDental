@@ -1,5 +1,6 @@
 ﻿/* Big tablet to 1500px */
 @media only screen and (max-width: 1500px){
+  
     body {
         font-size: 19px;
     }
@@ -34,6 +35,10 @@
  
      h1 {
       font-size: 140%;
+  }
+
+     h2 {
+      margin-top: 100px;
   }
 
   .hero-text-box h2 {
@@ -136,8 +141,9 @@ input[type=text],
 input[type=email],
 input[type=password],
 textarea {
-    width: 89%;
-    padding: 12px;
+    width: 110%;
+    font-size: 90%;
+    padding: 10px;
     border-radius: 3px;
     border: 1px solid #ccc;
 }
@@ -145,12 +151,14 @@ textarea {
   .wrapper{
     min-height: 180px;
      max-height: 200px;
+     font-size: 90%;
     overflow-x: hidden;
     overflow-y: scroll;
-    width: 400px;
+    width: 110%;
  }
  .wrapper .selection{
-   width:150px;
+   width:110%;
+   font-size: 90%;
      border: 1px solid #ccc;
  }
 
@@ -174,6 +182,10 @@ input[type=checkbox] {
     h1,h3 {
       font-size: 140%;
   }
+h2 {
+      margin-top: 80px;
+    font-size: 120%;
+  }
 
   .hero-text-box h2 {
       font-size: 140%;
@@ -195,6 +207,8 @@ input[type=checkbox] {
   .contact-form{
     width: 100%;
   }
+
+ 
 
 
   .btn:link,
@@ -271,6 +285,39 @@ input[type=checkbox] {
   .sticky .main-nav li a:visited { padding: 10px 0; }
   .sticky .mobile-nav-icon { margin-top: 10px; }
   .sticky .mobile-nav-icon i { color: #555; }
+
+
+     .section-form {
+    width: 100%;
+ 
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=datetime-local],
+textarea, select {
+    width: 140%;
+    font-size: 90%;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+  .wrapper{
+    min-height: 180px;
+     max-height: 200px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 140%;
+ }
+ .wrapper .selection{
+   width:140%;
+     border: 1px solid #ccc;
+ }
+
+
+
 }
 
 
@@ -280,6 +327,10 @@ input[type=checkbox] {
       font-size: 140%;
   }
 
+  h2 {
+      margin-top: 55px;
+      font-size: 115%;
+  }
   .hero-text-box h2 {
       font-size: 140%;
   }
@@ -296,10 +347,10 @@ input[type=checkbox] {
         font-size: 120%;
   }
 
-  section{ padding: 25px 0;}
-  .contact-form{
-    width: 100%;
+  section{ padding: 25px 0;
+
   }
+  
 
 
   .btn:link,
@@ -344,5 +395,41 @@ input[type=checkbox] {
     color: #fff;
 }
 
+
+  .contact-form {
+    width: 100%;
+    margin: 0 auto;
 }
-​
+
+    .section-form {
+    width: 100%;
+ 
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=datetime-local],
+textarea, select {
+    width: 120%;
+    font-size: 80%;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+  .wrapper{
+    min-height: 180px;
+     max-height: 200px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 120%;
+      font-size: 80%;
+ }
+ .wrapper .selection{
+   width:100%;
+     border: 1px solid #ccc;
+      font-size: 80%;
+ }
+
+}

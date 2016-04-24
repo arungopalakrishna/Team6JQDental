@@ -67,6 +67,19 @@ namespace Team6JQDental.Controllers
         }
 
 
+        [ResponseType(typeof(AccountInfo))]
+        public AccountInfo GetACCOUNTInfoDetails(int id)
+        {
+            AccountInfo accInfo = new AccountInfo();
+            var accountInfo = db.ACCOUNTs.First(a => a.Account_ID == id);
+            accInfo.Account_Balance = accountInfo.Account_Balance;
+            var payment = db.PAYMENTs.First(p => p.Account_ID == id);
+            accInfo.Last_Payment = payment.Payment_Amount;
+            accInfo.Remaining_Balance = accInfo.Account_Balance - accInfo.Last_Payment;
+            var patient = db.PATIENTs.First(p => p.Account_ID == id);
+            accInfo.FirstName = patient.Patient_First_Name;
+            return accInfo;
+        }
 
         // GET: api/ACCOUNTs/5
         [ResponseType(typeof(ACCOUNT))]
@@ -120,7 +133,7 @@ namespace Team6JQDental.Controllers
         {
             String addStatus = "fail";
             ACCOUNT aCCOUNT = new ACCOUNT();
-            account.Password = account.Password;
+            aCCOUNT.Password = account.Password;
 
             if (!(account.Account_ID > 0))
             {
@@ -134,6 +147,12 @@ namespace Team6JQDental.Controllers
                 if(accExists != null && accExists.Account_ID > 0)
                 {
                     aCCOUNT.Account_ID = account.Account_ID;
+                    var accountTemp = db.ACCOUNTs.First(p => p.Account_ID == account.Account_ID);
+                    if (accountTemp != null)
+                    {
+                        accountTemp.Password = account.Password;
+                    }
+                    await db.SaveChangesAsync();
                 }
                 else
                 {
@@ -174,6 +193,66 @@ namespace Team6JQDental.Controllers
             await db.SaveChangesAsync();
 
             return Ok(aCCOUNT);
+        }
+
+        //GET: api/ACCOUNTs/5 
+        public IQueryable<Patient> GetPATIENTs(int accountID)
+        {
+            List<Patient> PatientCollection = new List<Patient>();
+            Patient patient;
+            var query = from p in db.PATIENTs where p.Account_ID == accountID select p;
+            foreach (var d in query)
+            {
+                patient = new Patient();
+                patient.Account_ID = d.Account_ID;
+                patient.Patient_ID = d.Patient_ID;
+                patient.Patient_First_Name = d.Patient_First_Name;
+                patient.Patient_Middle_Name = d.Patient_Middle_Name;
+                patient.Patient_Last_Name = d.Patient_Last_Name;
+                patient.Patient_SSN = d.Patient_SSN;
+                patient.Patient_DOB = d.Patient_DOB;
+                patient.Patient_Allergies = d.Patient_Allergies;
+                PatientCollection.Add(patient);
+            }
+            return PatientCollection.AsQueryable();
+        }
+
+        // POST: api/ACCOUNTs
+        [ResponseType(typeof(PATIENT))]
+        public async Task<IHttpActionResult> PostPATIENT([FromBody] Patient patient)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var patientloc = db.PATIENTs.First(p => p.Patient_ID == patient.Patient_ID);
+            if (patientloc != null)
+            {
+                patientloc.Patient_First_Name = patient.Patient_First_Name;
+                patientloc.Patient_Middle_Name = patient.Patient_Middle_Name;
+                patientloc.Patient_Last_Name = patient.Patient_Last_Name;
+                patientloc.Patient_SSN = patient.Patient_SSN;
+                patientloc.Patient_DOB = patient.Patient_DOB;
+                patientloc.Patient_Allergies = patient.Patient_Allergies;
+            }
+            await db.SaveChangesAsync();
+            return Ok(patient);
+
+        }
+
+        // DELETE: api/PATIENT/5
+        [ResponseType(typeof(PATIENT))]
+        public async Task<IHttpActionResult> DeletePATIENT(int id)
+        {
+            var patient = db.PATIENTs.First(p => p.Patient_ID == id);
+            if (patient == null)
+            {
+                return NotFound();
+            }
+
+            db.PATIENTs.Remove(patient);
+            await db.SaveChangesAsync();
+            return Ok(patient);
         }
 
         protected override void Dispose(bool disposing)

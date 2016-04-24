@@ -19,10 +19,8 @@ angular.module('todoApp')
     };
 
     $scope.processPay = function () {
-        alert("Payment in progress")
         adminSvc.putPayment($scope.payment).success(function (results) {
             if (results.includes('good')) {
-                alert('Payment Successful');
             } else {
 
             }
