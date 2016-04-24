@@ -108,52 +108,56 @@ namespace Team6JQDental.Controllers
 
         // PUT: api/ACCOUNTs/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutACCOUNT(int id, ACCOUNT aCCOUNT, string password)
+        public async Task<IHttpActionResult> PutACCOUNT(Account account, Patient patient)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != aCCOUNT.Account_ID)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(aCCOUNT).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ACCOUNTExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
+            String addStatus = "fail";
+            return Ok(addStatus);
         }
 
         // POST: api/ACCOUNTs
         [ResponseType(typeof(ACCOUNT))]
-        public async Task<IHttpActionResult> PostACCOUNT(ACCOUNT aCCOUNT)
+        public async Task<IHttpActionResult> PostACCOUNT(Account account)
         {
-            if (!ModelState.IsValid)
+            String addStatus = "fail";
+            ACCOUNT aCCOUNT = new ACCOUNT();
+            account.Password = account.Password;
+
+            if (!(account.Account_ID > 0))
             {
-                return BadRequest(ModelState);
+                db.ACCOUNTs.Add(aCCOUNT);
+                aCCOUNT.Account_Balance = 0;
+                await db.SaveChangesAsync();
+            }
+            else 
+            {
+                var accExists = db.ACCOUNTs.First(a => a.Account_ID == account.Account_ID);
+                if(accExists != null && accExists.Account_ID > 0)
+                {
+                    aCCOUNT.Account_ID = account.Account_ID;
+                }
+                else
+                {
+                    return Ok(addStatus);
+                }
             }
 
-            db.ACCOUNTs.Add(aCCOUNT);
+            PATIENT pATIENT = new PATIENT();
+            pATIENT.Account_ID = aCCOUNT.Account_ID;
+            pATIENT.Patient_DOB = account.patient.Patient_DOB;
+            pATIENT.Patient_First_Name = account.patient.Patient_First_Name;
+            pATIENT.Patient_Last_Name = account.patient.Patient_Last_Name;
+            pATIENT.Patient_Phone_Primary = account.patient.Patient_Phone_Primary;
+            pATIENT.Patient_Street = account.patient.Patient_Street;
+            pATIENT.Patient_SSN = account.patient.Patient_SSN;
+            pATIENT.Patient_Phone_Secondary = account.patient.Patient_Phone_Secondary;
+            pATIENT.Patient_Allergies = account.patient.Patient_Allergies;
+
+            db.PATIENTs.Add(pATIENT);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = aCCOUNT.Account_ID }, aCCOUNT);
+            addStatus = "good";
+
+            return Ok(addStatus);
         }
 
         // DELETE: api/ACCOUNTs/5

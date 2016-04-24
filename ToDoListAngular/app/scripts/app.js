@@ -11,9 +11,9 @@ angular.module('todoApp', ['ngRoute'])
     }).when("/TodoList", {
         controller: "todoListCtrl",
         templateUrl: "/App/Views/TodoList.html",
-    }).when("/UserData", {
-        controller: "userDataCtrl",
-        templateUrl: "/App/Views/UserData.html",
+    }).when("/MyAccount", {
+        controller: "myAcctCtrl",
+        templateUrl: "/App/Views/MyAccount.html",
     }).when("/Login", {
         controller: "loginCtrl",
         templateUrl: "/App/Views/Login.html",

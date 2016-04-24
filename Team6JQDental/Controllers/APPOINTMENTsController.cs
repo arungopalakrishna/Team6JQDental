@@ -91,20 +91,41 @@ namespace Team6JQDental.Controllers
 
 
         // GET: api/APPOINTMENTsByUser
-        public IQueryable<Appointment> GetAPPOINTMENTsByPatient(int patientID)
+        public IQueryable<Appointment> GetAPPOINTMENTsByPatient(int accountID)
         {
             List<Appointment> appointmentList = new List<Appointment>();
             Appointment appointment;
+            var queryPatient = from p in db.PATIENTs where p.Account_ID == accountID select p;
 
-            foreach (APPOINTMENT a in db.APPOINTMENTs)
+            foreach (var pt in queryPatient)
             {
-                appointment = new Appointment();
-                appointment.Appointment_Date = a.Appointment_Date;
-                appointment.Appointment_Time = a.Appointment_Time;
-                appointment.Dentist_ID = a.Dentist_ID;
-                appointment.Patient_ID = a.Patient_ID;
-                //appointment.Scheduled_ServiceID = a.SCHEDULED_SERVICE.s;
-                appointmentList.Add(appointment);
+
+                var query = from p in db.APPOINTMENTs where p.Patient_ID == pt.Patient_ID select p;
+                foreach (var a in query)
+                {
+                    appointment = new Appointment();
+                    appointment.Appointment_ID = a.Appointment_ID;
+                    appointment.Appointment_Date = a.Appointment_Date;
+                    appointment.Appointment_Time = a.Appointment_Time;
+                    appointment.Dentist_ID = a.Dentist_ID;
+                    appointment.Patient_ID = a.Patient_ID;
+                    appointment.Dentist = new Dentist();
+                    appointment.Dentist.FirstName = a.DENTIST.Dentist_First_Name;
+                    appointment.Dentist.LastName = a.DENTIST.Dentist_Last_Name;
+                    appointment.Dentist.MiddleName = a.DENTIST.Dentist_Middle_Name;
+                    appointment.ScheduledServiceList = new List<string>();
+                    foreach (SCHEDULED_SERVICE ss in a.SCHEDULED_SERVICE)
+                    {
+                        appointment.ScheduledServiceList.Add(ss.SERVICE.Service_Description);
+                    }
+                    appointment.Patient = new Patient();
+                    appointment.Patient.Patient_First_Name = a.PATIENT.Patient_First_Name;
+                    appointment.Patient.Patient_Last_Name = a.PATIENT.Patient_Last_Name;
+
+
+                    //appointment.Scheduled_ServiceID = a.SCHEDULED_SERVICE.s;
+                    appointmentList.Add(appointment);
+                }
             }
 
             return appointmentList.AsQueryable();
@@ -159,39 +180,37 @@ namespace Team6JQDental.Controllers
 
         // POST: api/APPOINTMENTs
         [ResponseType(typeof(APPOINTMENT))]
-        public async Task<IHttpActionResult> PostAPPOINTMENT(Appointment appointment)
+        public async Task<IHttpActionResult> PostAPPOINTMENT([FromBody] Appointment appointment)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            APPOINTMENT aPPOINTMENT = new APPOINTMENT();
-            aPPOINTMENT.Appointment_Date = appointment.Appointment_Date;
-            aPPOINTMENT.Appointment_Time = appointment.Appointment_Time;
-            aPPOINTMENT.Dentist_ID = appointment.Dentist_ID;
-            aPPOINTMENT.Patient_ID = appointment.Patient_ID;
-
-            db.APPOINTMENTs.Add(aPPOINTMENT);
+            var appointmentloc = db.APPOINTMENTs.First(p => p.Appointment_ID == appointment.Appointment_ID);
+            if (appointmentloc != null)
+            {
+                appointmentloc.Appointment_Date = appointment.Appointment_Date;
+            }
             await db.SaveChangesAsync();
+            return Ok(appointment);
 
-            return CreatedAtRoute("DefaultApi", new { id = aPPOINTMENT.Appointment_ID }, aPPOINTMENT);
         }
+
 
         // DELETE: api/APPOINTMENTs/5
         [ResponseType(typeof(APPOINTMENT))]
         public async Task<IHttpActionResult> DeleteAPPOINTMENT(int id)
         {
-            APPOINTMENT aPPOINTMENT = await db.APPOINTMENTs.FindAsync(id);
-            if (aPPOINTMENT == null)
+            var appointment = db.APPOINTMENTs.First(p => p.Appointment_ID == id);
+            if (appointment == null)
             {
                 return NotFound();
             }
 
-            db.APPOINTMENTs.Remove(aPPOINTMENT);
+            db.APPOINTMENTs.Remove(appointment);
             await db.SaveChangesAsync();
 
-            return Ok(aPPOINTMENT);
+            return Ok(appointment);
         }
 
         protected override void Dispose(bool disposing)

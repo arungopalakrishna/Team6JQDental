@@ -484,15 +484,18 @@ footer p {
 }
 
 #apptTable {
-    border: 3px solid #004e63;
     width: 100%;
 }
 
 .apptHeader {
-    background: #f8f8f8;
+    background: #004e63;
     font-weight: bold;
-    color: #e67e22;
     padding: 2px;
+    color:white
+}
+
+.apptHeader td {
+    color:white;
 }
 
 #apptrowheader{
@@ -621,4 +624,71 @@ footer p {
     .custom-nav > li {
         width: 33%;
     }
+}
+
+
+
+
+
+
+.edit-buttons button{
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    display: inline-block;
+    color: #fff;
+    padding: 6px 12px;
+}
+.btn-save{
+    background-color: #286090;
+    border: 1px solid #286090;  
+    margin: 2px 2px 2px 2px;     
+    border-radius: 4px; 
+}
+.btn-delete{
+    background-color: #f44336;
+    border: 1px solid #f44336;   
+    margin: 2px 2px 2px 2px;     
+    border-radius: 4px; 
+}
+
+
+/* ----------------------------------------------- */
+/* My Account Info Table */
+/* ----------------------------------------------- */
+
+
+.table-striped{
+    border: 2px solid #004E63;
+    position:relative;
+    margin: 0 auto;
+    width: 60%;
+       
+}
+.table-header{
+    background-color:#004E63;
+    border:2px solid black;
+}
+.table-header td{
+    color:white;
+    padding-left:2px;
+    text-align: center;
+    font-family: Lato;
+}
+
+.table-header th{
+    color:white;
+    padding-left:2px;
+}
+
+.table-rows{
+    border:2px solid black;
+ 
+    }
+.table-rows td{
+      border:1px solid black;
+    text-align: center;
+    font-family: Lato;
 }

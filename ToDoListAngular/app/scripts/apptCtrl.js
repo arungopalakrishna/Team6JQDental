@@ -21,6 +21,10 @@ angular.module('todoApp')
         apptSvc.getDentists().success(function (results) {
             $scope.dentistList = results;
         });
+
+        apptSvc.getAppointments($scope.accountID).success(function (results) {
+            $scope.appointmentList = results;
+        });
     };
 
     $scope.schedule = function () {
@@ -38,4 +42,20 @@ angular.module('todoApp')
     $scope.changedService = function (services) {
         $scope.selectedServiceList = services;
     }
+
+    $scope.removeAppointment = function (id) {
+        apptSvc.deleteItem(id).success(function () {
+            apptSvc.getAppointments($scope.accountID).success(function (results) {
+                $scope.appointmentList = results;
+            })
+        });
+    };
+
+    $scope.saveAppointment = function (appointment) {
+        apptSvc.postItem(appointment).success(function () {
+            apptSvc.getAppointments($scope.accountID).success(function (results) {
+                $scope.appointmentList = results;
+            })
+        });
+    };
 }]);

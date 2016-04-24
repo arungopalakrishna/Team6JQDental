@@ -127,6 +127,7 @@
     <Content Include="app\scripts\dentistSvc.js" />
     <Content Include="app\scripts\loginCtrl.js" />
     <Content Include="app\scripts\loginSvc.js" />
+    <Content Include="app\scripts\myAcctCtrl.js" />
     <Content Include="app\scripts\navCtrl.js" />
     <Content Include="app\scripts\scripts.js" />
     <Content Include="app\scripts\signUpCtrl.js" />
@@ -135,6 +136,7 @@
     <Content Include="app\views\AdminPage.html" />
     <Content Include="app\views\Appointment.html" />
     <Content Include="app\views\Login.html" />
+    <Content Include="app\views\MyAccount.html" />
     <Content Include="app\views\SignUp.html" />
     <Content Include="packages.config" />
     <Content Include="Scripts\angular-mocks.js" />

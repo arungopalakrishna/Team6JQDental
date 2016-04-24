@@ -6,17 +6,17 @@
                 <div class="row">
                     <form class="form-horizontal" role="form">
                         <div>
-                            <table id="apptTable">
-                                <tr id="apptrowheader">
+                            <table class="table-striped">
+                                <tr class="table-header">
                                     <th  class="apptHeader">Dentist Name</th>
                                     <th class="apptHeader">Patient Name</th>
-                                    <th class="apptHeader">Appointment Name</th>
+                                    <th class="apptHeader">Appointment Time</th>
                                     <th class="apptHeader">Scheduled Services</th>
                                 </tr>
-                                <tr ng-repeat="appt in apptList">
+                                <tr class="table-rows" ng-repeat="appt in apptList">
                                     <td align="center">{{'Dr. '}}{{appt.Dentist.FirstName}}{{' '}}{{appt.Dentist.LastName}}</td>
                                     <td align="center">{{appt.Patient.Patient_First_Name}}{{' '}}{{appt.Patient.Patient_Last_Name}}</td>
-                                    <td align="center">{{appt.Appointment_Time}}</td>
+                                    <td align="center"><input type="datetime-local" disabled="disabled" ng-model="appt.Appointment_Time" align="center"/></td>
                                     <td align="center">{{appt.ScheduledServiceList}}</td>
                                 </tr>
                             </table>

@@ -4,36 +4,66 @@
             <h2>Create a New Account</h2>
         </div>
         <div class="row">
-            <form class="contact-form" role="form" ng-submit="submit()">
+            <form class="contact-form" role="form" ng-submit="signUp()">
                 <div class="form-group">
                     <input type="checkbox" ng-model="disablelist">Do you already have an account with us?<br><br>
                     <div class="form-group">
                         <label for="username">Account ID:</label>
-                        <input type="text" ng-disabled="!disablelist" ng-checked="disablelist && 0" class="form-control" id="username" name="accountID" ng-model="credentials.accountID" />
+                        <input type="text" ng-disabled="!disablelist" ng-checked="disablelist && 0" class="form-control" id="username" name="accountID" ng-model="account.accountID" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col span-1-of-2">
                         <label for="firstname">Password:</label>
-                        <input type="password" class="form-control" id="firstname" name="firstname" ng-model="credentials.password" />
+                        <input type="password" class="form-control" id="firstname" name="firstname" ng-model="account.Password" />
                     </div>
                     <div class="col span-2-of-4">
                         <label for="firstname">Retype Password:</label>
-                        <input type="password" class="form-control" id="lastname" name="lastname" ng-model="credentials.password" />
+                        <input type="password" class="form-control" id="lastname" name="lastname"  />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col span-1-of-2">
                         <label for="firstname">FirstName:</label>
-                        <input type="password" class="form-control" id="firstname" name="firstname" ng-model="credentials.firstName" />
+                        <input type="password" class="form-control" id="firstname" name="firstname" ng-model="account.patient.Patient_First_Name" />
                     </div>
                     <div class="col span-2-of-4">
                         <label for="firstname">LastName:</label>
-                        <input type="password" class="form-control" id="lastname" name="lastname" ng-model="credentials.lastName" />
+                        <input type="password" class="form-control" id="lastname" name="lastname" ng-model="account.patient.Patient_Last_Name"  />
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col span-1-of-2">
+                        <label for="firstname">Date of Birth</label>
+                        <input type="datetime-local" name="appointmentDateTimePicker" id="appointmentDateTime" ng-model="account.patient.Patient_DOB" >
+                    </div>
+                    <div class="col span-2-of-4">
+                        <label for="ssn">Social Security Number</label>
+                        <input type="text" name="ssndetail" id="ssndetail"  placeholder="XXX-XXX-XXXX" ng-model="account.patient.Patient_SSN">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-2">
+                        <label for="firstname">Phone:</label>
+                        <input type="text" class="form-control" id="telnumber" name="telnumber" ng-model="account.patient.Patient_Phone_Primary"  placeholder="XXX-XXX-XXXX" />
+                    </div>
+                    <div class="col span-2-of-4">
+                        <label for="firstname">Secondary Phone:</label>
+                        <input type="text" class="form-control" id="telnumber1" name="telnumber2" ng-model="account.patient.Patient_Phone_Secondary" placeholder="XXX-XXX-XXXX" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-2">
+                        <label for="firstname">Address:</label>
+                        <textarea name="message" placeholder="Residence Address" ng-model="account.patient.Patient_Street"></textarea>
+                    </div>
+                    <div class="col span-2-of-4">
+                        <label for="firstname">Allergies:</label>
+                        <textarea name="message" placeholder="List your allergies" ng-model="account.patient.Patient_Allergies"></textarea>
+                    </div>
+                </div>               
                 <div class="col span-2-of-3">
-                    <input class="btn btn-full" type="submit" value="Sign Up">
+                    <input class="btn btn-full" type="submit" value="Sign Up"  >
                 </div>
             </form>
         </div>

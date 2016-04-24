@@ -5,34 +5,20 @@ angular.module('todoApp')
         return viewLocation === $location.path();
     };
 
-    $scope.credentials = {};
-    $scope.update = function (credentials) {
-        $scope.credentials = angular.copy(credentials);
+    $scope.account = {};
+    $scope.update = function (account) {
+        $scope.account = angular.copy(account);
     };
 
+    $scope.signUp = function () {
+        loginSvc.postAccount($scope.account).success(function (results) {
+            if (results.includes('good')) {
+                alert("Sign up Successful");
+                $location.path('/#Home');
+            } else {
 
-    var authenticate = function (credentials) {
-
-        if ($rootScope.authenticated == true) {
-            $location.path('/#Home');
-        } else {
-            loginSvc.getAuth($scope.credentials).success(function (results) {
-                if (results.includes('good')) {
-                    $rootScope.authenticated = true;
-                    $rootScope.accountID = $scope.credentials.accountID;
-                    sessionStorage.setItem('authenticated', 'true');
-                    sessionStorage.setItem('accountID', $rootScope.accountID);
-                    $location.path('/#Home');
-                } else {
-
-                }
-            });
-        }
-    }
-
-
-    $scope.login = function () {
-        authenticate();
+            }
+        });
     };
 
 }]);

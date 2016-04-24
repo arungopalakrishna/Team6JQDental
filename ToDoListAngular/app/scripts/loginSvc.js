@@ -12,8 +12,8 @@ angular.module('todoApp')
         getItem: function (id) {
             return $http.get(apiEndpoint + '/api/DENTISTs/GetDENTIST' + id);
         },
-        postItem: function (item) {
-            return $http.post(apiEndpoint + '/api/DENTISTs/PostDENTIST', item);
+        postAccount: function (account) {
+            return $http.post(apiEndpoint + '/api/ACCOUNTs/PostACCOUNT', account);
         },
         putItem: function (item) {
             return $http.put(apiEndpoint + '/api/DENTISTs/PutDENTIST', item);
