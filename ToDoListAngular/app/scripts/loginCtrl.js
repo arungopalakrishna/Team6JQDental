@@ -3,6 +3,7 @@ angular.module('todoApp')
 .controller('loginCtrl', ['$rootScope', '$scope',  '$location', 'loginSvc', function ($rootScope, $scope,  $location, loginSvc) {
     $scope.isActive = function (viewLocation) {
         return viewLocation === $location.path();
+
     };
 
     $scope.credentials = {};
@@ -10,11 +11,14 @@ angular.module('todoApp')
         $scope.credentials = angular.copy(credentials);
     };
 
+    $scope.init = function () {
+        authenticate();
+    }
 
     var authenticate = function (credentials) {
 
-        if ($rootScope.authenticated == true) {
-            $location.path('/#Home');
+        if (sessionStorage.getItem('authenticated') == 'true') {
+            $location.path('/#Appointment');
         } else {
             loginSvc.getAuth($scope.credentials).success(function (results) {
                 if (results.includes('good')) {

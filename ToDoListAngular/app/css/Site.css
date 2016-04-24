@@ -51,7 +51,7 @@ input[type=submit] {
 .btn-ghost:link,
 .btn-ghost:visited {
     border: 1px solid #e67e22;
-    color: #e67e22;
+    color: white;
 }
 
 .btn:hover,
