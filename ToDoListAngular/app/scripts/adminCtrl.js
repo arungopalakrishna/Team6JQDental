@@ -4,6 +4,9 @@ angular.module('todoApp')
     $scope.isActive = function (viewLocation) {
         return viewLocation === $location.path();
     };
+
+    $scope.payment_success = "";
+
     $scope.todayDate = new Date().toLocaleDateString();
 
     adminSvc.getApptList().success(function (results) {
@@ -21,6 +24,7 @@ angular.module('todoApp')
     $scope.processPay = function () {
         adminSvc.putPayment($scope.payment).success(function (results) {
             if (results.includes('good')) {
+                $scope.payment_success = "Payment Successful";
             } else {
 
             }

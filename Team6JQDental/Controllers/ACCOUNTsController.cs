@@ -73,9 +73,10 @@ namespace Team6JQDental.Controllers
             AccountInfo accInfo = new AccountInfo();
             var accountInfo = db.ACCOUNTs.First(a => a.Account_ID == id);
             accInfo.Account_Balance = accountInfo.Account_Balance;
-            var payment = db.PAYMENTs.First(p => p.Account_ID == id);
-            accInfo.Last_Payment = payment.Payment_Amount;
-            accInfo.Remaining_Balance = accInfo.Account_Balance - accInfo.Last_Payment;
+            var payment = db.PAYMENTs.OrderByDescending(p => p.Payment_Date).First();
+            var paymentTotal = db.PAYMENTs.Where(p => p.Account_ID == id).Select(p => p.Payment_Amount).Sum();
+            accInfo.Remaining_Balance = accInfo.Account_Balance - paymentTotal;
+            accInfo.Last_Payment = paymentTotal;
             var patient = db.PATIENTs.First(p => p.Account_ID == id);
             accInfo.FirstName = patient.Patient_First_Name;
             return accInfo;

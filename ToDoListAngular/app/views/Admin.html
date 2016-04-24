@@ -1,89 +1,85 @@
 ﻿<div class="row custom-tab-margin" id="tab-container">
     <h2>Admin View</h2>
     <section class="section-form">
-            <h4>Today's Appointments {{' : '}}  {{todayDate}}</h4>
-            <section class="tab-pane" id="yellow">
-                <div class="row">
-                    <form class="form-horizontal" role="form">
-                        <div>
-                            <table class="table-striped">
-                                <tr class="table-header">
-                                    <th  class="apptHeader">Dentist Name</th>
-                                    <th class="apptHeader">Patient Name</th>
-                                    <th class="apptHeader">Appointment Time</th>
-                                    <th class="apptHeader">Scheduled Services</th>
-                                </tr>
-                                <tr class="table-rows" ng-repeat="appt in apptList">
-                                    <td align="center">{{'Dr. '}}{{appt.Dentist.FirstName}}{{' '}}{{appt.Dentist.LastName}}</td>
-                                    <td align="center">{{appt.Patient.Patient_First_Name}}{{' '}}{{appt.Patient.Patient_Last_Name}}</td>
-                                    <td align="center"><input type="datetime-local" disabled="disabled" ng-model="appt.Appointment_Time" align="center"/></td>
-                                    <td align="center">{{appt.ScheduledServiceList}}</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </form>
-                </div>
-            </section>
 
-            <h4>Submit Payment</h4>
-            <section class="tab-pane" id="payment_section">
-                <div class="row">
-                    <form action="">
-                        <div class="col-lg-12">
-                            <div class="col-lg-6 custom-top-margin">
-                                <div class="form-group">
-                                    <label for="visit">Account ID:</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" class="form-control" id="acctID" ng-model="payment.Account_ID" placeholder="Account ID">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="visit">Payment date:</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" class="form-control" id="payDate" ng-model="payment.Payment_Date" placeholder="DD/MM/YYYY">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="service">Payment Amount:</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" class="form-control" id="payAmount" ng-model="payment.Payment_Amount" placeholder="Amount">
-                                    </div>
-                                </div>
-                                <div class="col span-2-of-3">
-                                    <input class="btn btn-full" type="submit" value="Submit Payment" ng-click="processPay()">
+        <h4>Submit Payment</h4>
+        <section class="tab-pane" id="payment_section">
+            <div class="row">
+                <form action="" class="contact-form">
+                    <div class="form-group">
+                        <label for="visit">Account ID:</label>
+                        <input type="text" class="form-control" id="acctID" ng-model="payment.Account_ID" placeholder="Account ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="visit">Payment date:</label>
+                        <input type="text" class="form-control" id="payDate" ng-model="payment.Payment_Date" placeholder="YYYY-MM-DD">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Payment Amount:</label>
+                        <input type="text" class="form-control" id="payAmount" ng-model="payment.Payment_Amount" placeholder="Amount">
+                    </div>
+                    <div class="col span-2-of-3">
+                        <input class="btn btn-full" type="submit" value="Submit Payment" ng-click="processPay()">
+                    </div>
+                    <div class="col span-3-of-3">
+                        <h4 style="color:green">{{payment_success}}</h4>
+                    </div>
+                </form>
+                <h5></h5>
+            </div>
+        </section>
+
+        <h4>Today's Appointments {{' : '}}  {{todayDate}}</h4>
+        <section class="tab-pane" id="yellow">
+            <div class="row">
+                <form class="form-horizontal" role="form">
+                    <div>
+                        <table class="table-striped">
+                            <tr class="table-header">
+                                <th class="apptHeader">Dentist Name</th>
+                                <th class="apptHeader">Patient Name</th>
+                                <th class="apptHeader">Appointment Time</th>
+                                <th class="apptHeader">Scheduled Services</th>
+                            </tr>
+                            <tr class="table-rows" ng-repeat="appt in apptList">
+                                <td align="center">{{'Dr. '}}{{appt.Dentist.FirstName}}{{' '}}{{appt.Dentist.LastName}}</td>
+                                <td align="center">{{appt.Patient.Patient_First_Name}}{{' '}}{{appt.Patient.Patient_Last_Name}}</td>
+                                <td align="center"><input type="datetime-local" disabled="disabled" ng-model="appt.Appointment_Time" align="center" /></td>
+                                <td align="center">{{appt.ScheduledServiceList}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+       
+        <h4>Add Visits</h4>
+        <section class="tab-pane active" id="red">
+            <div class="row">
+                <form class="form-horizontal" role="form">
+                    <div class="col-lg-12">
+                        <div class="col-lg-6 custom-top-margin">
+                            <div class="form-group">
+                                <label class="col-lg-4 label-font" for="email">Dentist:</label>
+                                <div class="col-lg-8">
+                                    <select name="dentist" id="dentistNameList" data-ng-model="dentist" data-ng-options="d.DentistID as 'Dr.' +  d.FirstName + ' ' + d.LastName for d in dentistList">
+                                        <option value="" disabled selected>Who is your dentist?</option>
+                                    </select>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                    <h5></h5>
-                </div>
-            </section>
-            <h4>Add Visits</h4>
-            <section class="tab-pane active" id="red">
-                <div class="row">
-                    <form class="form-horizontal" role="form">
-                        <div class="col-lg-12">
-                            <div class="col-lg-6 custom-top-margin">
-                                <div class="form-group">
-                                    <label class="col-lg-4 label-font" for="email">Dentist:</label>
-                                    <div class="col-lg-8">
-                                        <select name="dentist" id="dentistNameList" data-ng-model="dentist" data-ng-options="d.DentistID as 'Dr.' +  d.FirstName + ' ' + d.LastName for d in dentistList" >
-                                            <option value="" disabled selected>Who is your dentist?</option>
-                                        </select>
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 label-font" for="visit">Visit date:</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" id="visit" placeholder="DD/MM/YYYY">
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-lg-4 label-font" for="visit">Visit date:</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" class="form-control" id="visit" placeholder="DD/MM/YYYY">
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-4 label-font" for="service">Service IDs:</label>
+                                <div class="col-lg-8" id="wrapper">
+                                    <input type="text" class="form-control" id="service" placeholder="ID1,ID2,..">
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-lg-4 label-font" for="service">Service IDs:</label>
-                                    <div class="col-lg-8" id="wrapper">
-                                        <input type="text" class="form-control" id="service" placeholder="ID1,ID2,..">
-                                    </div>
-                                </div>
+                            </div>
                             <div class="col-lg-6 custom-top-margin">
                                 <div class="form-group">
                                     <label class="col-lg-4 label-font" for="visit">Patient ID:</label>
@@ -98,11 +94,11 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="col span-2-of-3">
-                                    <input lass="btn btn-full" type="submit" value="Submit Visit" />
-                                </div>
-                    </form>
-                </div>
-            </section>
+                            <div class="col span-2-of-3">
+                                <input lass="btn btn-full" type="submit" value="Submit Visit" />
+                            </div>
+                </form>
+            </div>
+        </section>
     </section>
 </div>
