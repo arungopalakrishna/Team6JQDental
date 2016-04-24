@@ -12,6 +12,7 @@ angular.module('todoApp')
     $scope.accountID = sessionStorage.getItem('accountID');
 
     $scope.populate = function () {
+        $scope.accountID = sessionStorage.getItem('accountID');
         apptSvc.getServices().success(function (results) {
             $scope.serviceList = results;
         });
@@ -39,6 +40,7 @@ angular.module('todoApp')
         apptSvc.putAppointment($scope.appointment).success(function (results) {
             apptSvc.getAppointments($scope.accountID).success(function (results) {
                 $scope.appointmentList = results;
+                $scope.sheduleSuccess = "Succesfully Scheduled";
             })
         })
     };

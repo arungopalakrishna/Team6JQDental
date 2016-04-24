@@ -1,6 +1,6 @@
-﻿<div ng-init="populate()"  ng-controller='apptCtrl'>
+﻿<div ng-init="populate()" ng-controller='apptCtrl'>
     <section class="section-form">
-            <h2>Schedule an appointment with us</h2>
+        <h2>Schedule an appointment with us</h2>
         <div class="row">
             <form action="" role="form" ng-submit="schedule()">
                 <div class="row">
@@ -8,7 +8,7 @@
                         <label for="patientName">Patient Name</label>
                     </div>
                     <div class="col span-2-of-3">
-                        <select name="patientName" id="accountNameList" data-ng-model="patient" data-ng-options="p.Patient_ID as p.Patient_First_Name for p in patientList" data-ng-change="changedPatient(patient)" >
+                        <select name="patientName" id="accountNameList" data-ng-model="patient" data-ng-options="p.Patient_ID as p.Patient_First_Name for p in patientList" data-ng-change="changedPatient(patient)">
                             <option value="" disabled selected>Who are you scheduling for?</option>
                         </select>
                     </div>
@@ -52,38 +52,46 @@
                         <label>&nbsp;</label>
                     </div>
                     <div class="col span-2-of-3">
-                        <input class="btn btn-full" type="submit" value="Schedule" >
+                        <input class="btn btn-full" type="submit" value="Schedule">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label>&nbsp;</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <h4 style="color:green">{{sheduleSuccess}}</h4>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="col span-8-of-8"  id="apptsTable">
+        <div class="col span-8-of-8" id="apptsTable">
             <div class="row">
                 <h2>Your Schedule</h2>
             </div>
-                <table class="table-striped">
-                    <tr class="table-header">
-                        <td>Patient First Name</td>
-                        <td>Patient Last Name</td>
-                        <td>Dentist</td>
-                        <td>Appointment</td>
-                        <td>Edit</td>
-                    </tr>
-                    <tr class="table-rows" ng-repeat="appointment in appointmentList ">
-                        <td><span ng-model="appointment.Patient.Patient_First_Name">{{appointment.Patient.Patient_First_Name}}</span> </td>
-                        <td><span ng-model="appointment.Patient.Patient_Last_Name"> {{appointment.Patient.Patient_Last_Name}}</span></td>
-                        <td><span ng-model="appointment.Dentist.LastName">Dr.{{appointment.Dentist.LastName}}</span></td>
-                        <td><input type="datetime-local" name="appointmentDateTimePicker" id="appointmentDateTime" ng-model="appointment.Appointment_Date" /></td>
-                        <td>
-                            <div class="edit-buttons">
-                                <button class="btn btn-save" ng-click="saveAppointment(appointment)">Save</button>
-                                <button class="btn btn-delete" ng-click="removeAppointment(appointment.Appointment_ID)">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+            <table class="table-striped">
+                <tr class="table-header">
+                    <td>Patient First Name</td>
+                    <td>Patient Last Name</td>
+                    <td>Dentist</td>
+                    <td>Appointment</td>
+                    <td>Edit</td>
+                </tr>
+                <tr class="table-rows" ng-repeat="appointment in appointmentList ">
+                    <td><span ng-model="appointment.Patient.Patient_First_Name">{{appointment.Patient.Patient_First_Name}}</span> </td>
+                    <td><span ng-model="appointment.Patient.Patient_Last_Name"> {{appointment.Patient.Patient_Last_Name}}</span></td>
+                    <td><span ng-model="appointment.Dentist.LastName">Dr.{{appointment.Dentist.LastName}}</span></td>
+                    <td><input type="datetime-local" name="appointmentDateTimePicker" id="appointmentDateTime" ng-model="appointment.Appointment_Date" /></td>
+                    <td>
+                        <div class="edit-buttons">
+                            <button class="btn btn-save" ng-click="saveAppointment(appointment)">Save</button>
+                            <button class="btn btn-delete" ng-click="removeAppointment(appointment.Appointment_ID)">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
     </section>
-    
+
 </div>
