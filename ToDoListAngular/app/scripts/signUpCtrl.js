@@ -13,7 +13,7 @@ angular.module('todoApp')
     $scope.signUp = function () {
         loginSvc.postAccount($scope.account).success(function (results) {
             if (results.includes('good')) {
-                $location.path('/#Home');
+                $location.path('/#Login');
             } else {
 
             }

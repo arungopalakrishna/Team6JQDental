@@ -23,6 +23,7 @@ angular.module('todoApp')
         $rootScope.accountID = "";
         sessionStorage.removeItem('authenticated');
         sessionStorage.removeItem('accountID');
+        $location.path('/#Home');
     }
 
 }]);

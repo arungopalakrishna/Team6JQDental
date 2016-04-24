@@ -287,6 +287,10 @@ header {
             color: #555;
         }
 
+       .navbar-custom .main-nav li a:hover {
+            border-bottom: 1px solid #cf6d17;
+        }
+
 
     .navbar-custom .logo {
         height: 68px;

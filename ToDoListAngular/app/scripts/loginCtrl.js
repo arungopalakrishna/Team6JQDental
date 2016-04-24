@@ -18,7 +18,7 @@ angular.module('todoApp')
     var authenticate = function (credentials) {
 
         if (sessionStorage.getItem('authenticated') == 'true') {
-            $location.path('/#Appointment');
+            $location.path('/#Home');
         } else {
             loginSvc.getAuth($scope.credentials).success(function (results) {
                 if (results.includes('good')) {
